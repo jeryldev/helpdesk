@@ -24,6 +24,22 @@ defmodule Helpdesk.Support.Ticket do
       # change MyCustomChange
       # change {MyCustomChange, opt: :val}
     end
+
+    update :assign do
+      # No attributes should be accepted
+      accept []
+
+      # We accept a representative's id as input here
+      argument :representative_id, :uuid do
+        # This action requires representative_id
+        allow_nil? false
+      end
+
+      # We use a change here to replace the related Representative
+      # If there is a different representative for this Ticket, it will be changed to the new one
+      # The Representative itself is not modified in any way
+      change manage_relationship(:representative_id, :representative, type: :append_and_remove)
+    end
   end
 
   # Attributes are the simple pieces of data that exist on your resource
@@ -52,5 +68,13 @@ defmodule Helpdesk.Support.Ticket do
       # We also don't want status to eer be `nil`
       allow_nil? false
     end
+  end
+
+  relationships do
+    # belongs_to means that the destination attrivute is unique, meaning only one related record could exitst.
+    # We assume that the destination attribute is `representative_id` based
+    # on the name of this relationship and that the source attribbute is `representative_id`.
+    # We create `representative_id` automatically.
+    belongs_to :representative, Helpdesk.Support.Representative
   end
 end
