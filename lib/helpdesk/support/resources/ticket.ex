@@ -1,4 +1,4 @@
-defmodule Helpdesk.Support.Resources.Ticket do
+defmodule Helpdesk.Support.Ticket do
   # Turns this module into a resource
   use Ash.Resource,
     # Add ETS data layer for testing and prototyping
