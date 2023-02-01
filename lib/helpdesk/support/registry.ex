@@ -6,6 +6,7 @@ defmodule Helpdesk.Support.Registry do
     ]
 
   entries do
-    entry Helpdesk.Support.Resources.Ticket
+    entry Helpdesk.Support.Ticket
+    entry Helpdesk.Support.Representative
   end
 end
