@@ -2,7 +2,14 @@ defmodule Helpdesk.Support.Ticket do
   # Turns this module into a resource
   use Ash.Resource,
     # Add ETS data layer for testing and prototyping
-    data_layer: Ash.DataLayer.Ets
+    # data_layer: Ash.DataLayer.Ets
+    data_layer: AshPostgres.DataLayer
+
+  postgres do
+    table "tickets"
+
+    repo Helpdesk.Repo
+  end
 
   actions do
     # Add a set of simple actions. You'll customeze these later.
