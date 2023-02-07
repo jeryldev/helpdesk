@@ -26,6 +26,8 @@ defmodule Helpdesk.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:ash, "~> 2.5.16"},
       {:ash_postgres, "~> 1.3.5"},
+      {:ash_graphql, "~> 0.22.4"},
+      {:absinthe_plug, "~> 1.5"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]}
     ]
   end
